@@ -92,6 +92,7 @@ class ParallelArrayDictionaryTest
 //		ensures removes is working
 		dict.remove(1);
 		assertEquals (1, dict.size());
+		dict.remove(3);
 		
 	}
 

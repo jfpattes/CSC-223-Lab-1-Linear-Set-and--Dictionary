@@ -33,7 +33,7 @@ public class ArraySet<E> implements List<E>, Set<E>
 	 */
 	public boolean add(E e) {
 		//ensures no repetition
-		if (_list.contains(e)==true) {
+		if (_list.contains(e)) {
 			return false;
 		}
 		else {
@@ -54,7 +54,7 @@ public class ArraySet<E> implements List<E>, Set<E>
 		boolean holder=false;
 		//iterates through collection and makes sure values aren't repeated
 		for (E item: c) {
-			if (_list.contains(item)==false) {
+			if (!_list.contains(item)) {
 				_list.add(item);
 				//changes value to be returned
 				holder=true;

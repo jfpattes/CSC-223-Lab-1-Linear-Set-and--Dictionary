@@ -52,7 +52,7 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value>
 	 */
 	public Value get(Object key) {
 		//returns null if key doesn't exist
-		if (_keys.contains(key)==false) {
+		if (!_keys.contains(key)) {
 				return null;
 			}
 		//returns value if key does exist
@@ -72,7 +72,7 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value>
 	 */
 	public Value put(Key key, Value value) {
 		//if key exists removes both key and value
-		if (_keys.contains(key)==true){
+		if (_keys.contains(key)){
 			int i = _keys.indexOf(key);
 			_keys.remove(i);
 			_values.remove(i);
