@@ -65,10 +65,13 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value>
 	}
 	@Override
 	public Set<Key> keySet() {
-		int length=_keys.size();
-		for (int i=0; i<length; i++) {
-			return _keys[i];
-		}
+		Set<Key> key_values = new ArraySet<Key>();
+		for (Key value:_keys) {
+			key_values.add(value);		
+			}
+		return key_values;
+	}
+		
 
 	}
 	@Override

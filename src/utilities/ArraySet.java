@@ -10,18 +10,27 @@ import java.util.Spliterator;
 public class ArraySet<E> implements List<E>, Set<E>
 {
 	protected ArrayList<E> _list;
+	
+	public ArraySet() {
+		_list=new ArrayList<E>();
+	}
 
 	@Override
 	public boolean add(E e) {
-		return _list.add(e);
+		if (_list.contains(e)) {
+			return false;
+		}
+		else {
+			return _list.add(e);
+		}
 	}
 
 	@Override
 	public boolean addAll(Collection<? extends E> c) {
-		for (int i=0; i<c.size(); i++) {
-			return _list.add(c[i]);
+		for (E item: c) {
+			_list.add(item);
 		}
-		
+		return false;
 	}
 
 	@Override
@@ -101,7 +110,6 @@ public class ArraySet<E> implements List<E>, Set<E>
 		_list.add(index, element);
 	}
 
-	@Override
 	public E remove(int index) {
 		return _list.remove(index);
 	}
@@ -129,6 +137,12 @@ public class ArraySet<E> implements List<E>, Set<E>
 	@Override
 	public List<E> subList(int fromIndex, int toIndex) {
 		return _list.subList(fromIndex, toIndex);
+	}
+
+	@Override
+	public Spliterator<E> spliterator() {
+		// TODO Auto-generated method stub
+		return List.super.spliterator();
 	}
 	
 }
