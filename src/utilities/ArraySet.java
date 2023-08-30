@@ -1,4 +1,12 @@
  package utilities;
+ 
+ /**
+ * Allows for an array set to be created and manipulated similarly to a list.
+ *
+ *
+ * @author <Jalen Livingston, Jack Patterson>
+ * @date <98/30/2023>
+ */
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,9 +23,17 @@ public class ArraySet<E> implements List<E>, Set<E>
 		_list=new ArrayList<E>();
 	}
 
-	@Override
+	 /**
+	 * adds parameter to a set, ensuring no repetition.
+	 *
+	 *
+	 * @param a generic type
+	 * @return boolean of whether it added or not
+	 * @Override
+	 */
 	public boolean add(E e) {
-		if (_list.contains(e)) {
+		//ensures no repetition
+		if (_list.contains(e)==true) {
 			return false;
 		}
 		else {
@@ -25,12 +41,24 @@ public class ArraySet<E> implements List<E>, Set<E>
 		}
 	}
 
-	@Override
+	/**
+	 * adds multiple parameters to a set, ensuring no repetition.
+	 *
+	 *
+	 * @param a collection of a generic type
+	 * @return boolean of whether it added any of the generics
+	 * @Override
+	 */
 	public boolean addAll(Collection<? extends E> c) {
+		//initializes return value as false
 		boolean holder=false;
+		//iterates through collection and makes sure values aren't repeated
 		for (E item: c) {
-			_list.add(item);
-			holder=true;
+			if (_list.contains(item)==false) {
+				_list.add(item);
+				//changes value to be returned
+				holder=true;
+			}
 		}
 		return holder;
 	}
@@ -79,6 +107,7 @@ public class ArraySet<E> implements List<E>, Set<E>
 
 	@Override
 	public boolean addAll(int index, Collection<? extends E> c) {
+		
 		return _list.addAll(index, c);
 	}
 

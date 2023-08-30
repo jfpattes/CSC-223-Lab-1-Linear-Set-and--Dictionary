@@ -3,9 +3,18 @@ package utilities;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+/**
+* Allows for an dictionary to be created and with manipulated of array sets.
+*
+*
+* @author <Jalen Livingston, Jack Patterson>
+* @date <98/30/2023>
+*/
 public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value>
 {
 	protected ArraySet<Key> _keys;
@@ -33,29 +42,69 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value>
 	public boolean containsValue(Object value) {
 		return _values.contains(value);
 	}
-	@Override
+	/**
+	 * gets the value correlated to a key
+	 *
+	 *
+	 * @param a key
+	 * @return boolean of value associated with the key
+	 * @Override
+	 */
 	public Value get(Object key) {
-		int i=_keys.indexOf(key);
-		return _values.get(i);
+		//returns null if key doesn't exist
+		if (_keys.contains(key)==false) {
+				return null;
+			}
+		//returns value if key does exist
+		else {
+			int i=_keys.indexOf(key);
+			return _values.get(i);
+		}
 	}
-	@Override
+		
+	/**
+	 * adds a key and a value.
+	 *
+	 *
+	 * @param a key and value
+	 * @return returns value
+	 * @Override
+	 */
 	public Value put(Key key, Value value) {
+		//if key exists removes both key and value
+		if (_keys.contains(key)==true){
+			int i = _keys.indexOf(key);
+			_keys.remove(i);
+			_values.remove(i);
+		}
+		//adds key and value, then returns value
 		_keys.add(key);
-		int i = _keys.indexOf(key);
 		_values.add(value);
-		return _values.get(i); 
+		int i = _keys.indexOf(key);
+		return _values.get(i);
 		
 	}
-	@Override
+	/**
+	 * removes value and key, returns value
+	 *
+	 *
+	 * @param key
+	 * @return value
+	 * @Override
+	 */
 	public Value remove(Object key) {
-		int i = _keys.indexOf(0);
-		Value holder = _values.get(i);
-		_keys.remove(key);
-		_values.remove(i);
-		return holder;
+		int i = _keys.indexOf(key);
+		_keys.remove(i);
+		return _values.remove(i);
 		
 	}
-	@Override
+	/**
+	 * iterates through map and puts keys and values from map
+	 *
+	 *
+	 * @param map
+	 * @Override
+	 */
 	public void putAll(Map<? extends Key, ? extends Value> m) {
 		for (Entry<? extends Key, ? extends Value> pair: m.entrySet()) {
 			put(pair.getKey(), pair.getValue());
@@ -71,31 +120,17 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value>
 	}
 	@Override
 	public Set<Key> keySet() {
-		if (_keys.isEmpty()==true){
-			return null;
-		}
-		Set<Key> key_values = new ArraySet<Key>();
-		for (Key value:_keys) {
-			key_values.add(value);		
-			}
-		return key_values;
+		return _keys;
 	}
 		
 
 	@Override
 	public Collection<Value> values() {
-		if (_values.isEmpty()==true){
-			return null;
-		}
-		List<Value> valueHolder = new ArrayList<>();
-		for(Value info: _values) {
-			valueHolder.add(info);
-		}
-		return valueHolder;
+		return _values;
 	}
 	@Override
 	public Set<Entry<Key, Value>> entrySet() {
-		// TODO Auto-generated method stub
-		return null;
+		Map<Key, Value> m = new HashMap<Key, Value>();
+		return m.entrySet();
 	}
 }
