@@ -3,6 +3,7 @@ package utilities;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value>
@@ -40,8 +41,10 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value>
 	@Override
 	public Value put(Key key, Value value) {
 		_keys.add(key);
+		int i = _keys.indexOf(key);
 		_values.add(value);
-		return null;
+		return _values.get(i); 
+		
 	}
 	@Override
 	public Value remove(Object key) {
@@ -54,7 +57,10 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value>
 	}
 	@Override
 	public void putAll(Map<? extends Key, ? extends Value> m) {
-		// TODO Auto-generated method stub
+		for (Entry<? extends Key, ? extends Value> pair: m.entrySet()) {
+			put(pair.getKey(), pair.getValue());
+			
+		}
 		
 	}
 	@Override
@@ -65,6 +71,9 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value>
 	}
 	@Override
 	public Set<Key> keySet() {
+		if (_keys.isEmpty()==true){
+			return null;
+		}
 		Set<Key> key_values = new ArraySet<Key>();
 		for (Key value:_keys) {
 			key_values.add(value);		
@@ -73,11 +82,16 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value>
 	}
 		
 
-	}
 	@Override
 	public Collection<Value> values() {
-		// TODO Auto-generated method stub
-		return null;
+		if (_values.isEmpty()==true){
+			return null;
+		}
+		List<Value> valueHolder = new ArrayList<>();
+		for(Value info: _values) {
+			valueHolder.add(info);
+		}
+		return valueHolder;
 	}
 	@Override
 	public Set<Entry<Key, Value>> entrySet() {

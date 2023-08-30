@@ -27,10 +27,12 @@ public class ArraySet<E> implements List<E>, Set<E>
 
 	@Override
 	public boolean addAll(Collection<? extends E> c) {
+		boolean holder=false;
 		for (E item: c) {
 			_list.add(item);
+			holder=true;
 		}
-		return false;
+		return holder;
 	}
 
 	@Override
@@ -87,6 +89,7 @@ public class ArraySet<E> implements List<E>, Set<E>
 
 	@Override
 	public boolean retainAll(Collection<?> c) {
+		
 		return _list.retainAll(c);
 	}
 
