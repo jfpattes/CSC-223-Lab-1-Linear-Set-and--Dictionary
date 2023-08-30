@@ -18,12 +18,12 @@ import java.util.Set;
 public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value>
 {
 	protected ArraySet<Key> _keys;
-	protected ArraySet<Value> _values;
+	protected ArrayList<Value> _values;
 	
 	public ParallelArrayDictionary()
 	{
 		_keys=new ArraySet<Key>();
-		_values=new ArraySet<Value>();
+		_values=new ArrayList<Value>();
 	}
 	
 	@Override
@@ -115,7 +115,7 @@ public class ParallelArrayDictionary<Key, Value> implements Map<Key, Value>
 	@Override
 	public void clear() {
 		_keys.clear();
-		_values.clear();
+		_values.clear();;
 		
 	}
 	@Override

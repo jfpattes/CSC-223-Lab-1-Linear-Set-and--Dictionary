@@ -105,6 +105,7 @@ class ArraySetTest
 		set.addAll(Arrays.asList(1, 2, 3, 5, 7));
 		assertTrue (set.retainAll(collection));
 		assertEquals (2, set.size());
+		assertEquals (new Integer(1), set.get(0));
 
 	}
 
@@ -123,7 +124,7 @@ class ArraySetTest
 		//test that the correct numbers are getting removed
 		assertTrue (set.removeAll(collection));
 		assertEquals (3, set.size());
-		
+		assertEquals (new Integer(12), set.get(0));
 		
 	}
 

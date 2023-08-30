@@ -121,6 +121,7 @@ class ParallelArrayDictionaryTest
 		dict.putAll(m);
 		//ensures that multiple values can be added
 		assertEquals(5, dict.size());
+		assertEquals(new Integer (101), dict.get(4));
 	};
 
 	/**
